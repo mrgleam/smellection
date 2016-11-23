@@ -12,12 +12,16 @@
 package com.industriallogic.collections;
 
 public abstract class AbstractCollection implements Collection {
+	protected int size = 0;
+	protected static int INITIAL_CAPACITY = 10;
+	protected Object[] elements = new Object[INITIAL_CAPACITY];
+
 	public void addAll(AbstractCollection c) {
 		if (c instanceof Set) {
 			Set s = (Set)c;
 			for (int i=0; i < s.size(); i++) {
-				if (!contains(s.getElementAt(i))) {
-					add(s.getElementAt(i));
+				if (!contains(s.get(i))) {
+					add(s.get(i));
 				}
 			}
 			
@@ -36,5 +40,13 @@ public abstract class AbstractCollection implements Collection {
 	}
 	
 	public void add(Object key, Object value) {
+	}
+
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	public Object get(int index) {
+		return elements[index];
 	}
 }
